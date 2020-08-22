@@ -1,0 +1,28 @@
+#日志配置
+logging: 
+  file: ./logs/web.log
+  level: 
+    root: INFO
+server : 
+  port : 8080  #服务端口号
+  servlet:
+    encoding: #编码设置
+      force: true
+      force-request: true
+      force-response: true
+      charset: UTF-8
+      enabled: true
+spring:
+  profiles:
+    active: dev
+  application:
+    name: wueasy-example-web
+  jmx:
+    enabled: false
+  aop:
+    auto: true
+    proxy-target-class: false
+  servlet:
+    multipart:
+      maxFileSize: 100MB
+      maxRequestSize: 100MB

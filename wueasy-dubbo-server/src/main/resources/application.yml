@@ -1,0 +1,10 @@
+#日志配置
+logging: 
+  file: ./logs/server.log
+  level: 
+    root: INFO
+spring:
+  profiles:
+    active: dev
+  application:
+    name: wueasy-dubbo-server

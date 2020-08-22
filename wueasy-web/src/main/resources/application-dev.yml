@@ -1,0 +1,7 @@
+upload:
+  fileRootPath: d:\\temp #上传文件根目录
+  httpAccessPath: #文件访问地址
+  
+dubbo:
+  registry:
+    address: zookeeper://127.0.0.1:2181

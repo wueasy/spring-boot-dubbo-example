@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="useMapperCommentGenerator" value="true"/>
+
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+            <property name="caseSensitive" value="true"/>
+            <property name="forceAnnotation" value="false"/>
+            <property name="generateColumnConsts" value="false"/>
+            <property name="generateDefaultInstanceMethod" value="false"/>
+            <property name="lombok" value="Data"/>
+        </plugin>
+
+        <!--通用代码生成器插件-->
+        <!--mapper接口-->
+        <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
+            <property name="targetProject" value="src/main/java"/>
+            <property name="targetPackage" value="com.wueasy.example.mapper"/>
+            <property name="templatePath" value="generator/mapper.ftl"/>
+            <property name="mapperSuffix" value="Mapper"/>
+            <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.java"/>
+        </plugin>
+        <!--mapper.xml-->
+        <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
+            <property name="targetProject" value="src/main/resources"/>
+            <property name="targetPackage" value="mybatis.demo.mapper"/>
+            <property name="mapperPackage" value="com.wueasy.example.mapper"/>
+            <property name="templatePath" value="generator/mapperXml.ftl"/>
+            <property name="mapperSuffix" value="Mapper"/>
+            <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.xml"/>
+        </plugin>
+
+
+        <!-- 数据库连接 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/test?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf-8"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+        <!--模型配置-->
+        <javaModelGenerator targetPackage="com.wueasy.example.entry" targetProject="src/main/java"/>
+
+
+        <!-- 表配置 -->
+        <table tableName="demo">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+    </context>
+</generatorConfiguration>
